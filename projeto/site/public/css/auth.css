@@ -1,0 +1,211 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/cadastrobanner.png");
+    background-repeat: no-repeat;
+    background-size: cover;    
+    
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    background-image: url("../img/fundowrappercadastro.png");
+    border-radius: 10%;
+    overflow: hidden;
+}
+
+
+.wrapper--login {
+    width: 52rem;  
+    height: 36rem;     
+}
+
+.wrapper--cadastro {
+    width: 55rem;   
+    height: 38rem; 
+}
+
+
+.img-box {
+    width: 50%;
+    height: 100%;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.auth-container {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.auth-logo--login   {
+     width: 15rem;
+     }
+.auth-logo--cadastro {
+     width: 9rem; 
+    }
+
+
+.auth-container h3 {
+    margin-bottom: 0.3rem;
+    color:  #A90505;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+.input-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.4rem;
+}
+
+.input-group > i {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color:  #242020;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+ 
+ 
+/* ---------- Input ---------- */
+.auth-input {
+    width: 100%;
+    height: 3rem;
+    padding: 0 0.5rem 0 2.5rem;
+    border-radius: 0.7rem;
+    border: 4px solid  #242020;
+    font-size: 1rem;
+}
+ 
+.auth-input:hover {
+    border-color: rgba(234, 154, 154, 0.8);
+    background-color: rgb(249, 218, 218);
+}
+ 
+.auth-input:focus {
+    border-color: #B83232;
+    background-color: #ffffff;
+}
+ 
+.auth-input::placeholder {
+    color:  #242020;
+}
+
+.auth-input:hover {
+    border-color: #A90505;
+}
+
+.auth-input:focus {
+    border-color: #ceca48;
+}
+
+
+.auth-link {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color:  #0400ee;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.auth-link--forgot {
+    align-self: flex-start;
+    margin-bottom: 0.625rem;
+}
+
+.auth-btn {
+    margin-top: 1.1rem;
+    padding: 0.5rem 0.6rem;
+    border: none;
+    border-radius: 0.625rem;
+    background: #A90505;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+    width: 12.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: solid 3px black;
+
+
+}
+
+.auth-btn:hover {
+    background:  #ec3939;
+}
+
+
+/* ---------- Mensagem de validação ---------- */
+.auth-message {
+    display: block;
+    color:  #7A6A52;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+    min-height: 1.5rem;
+    text-align: center;
+}
+
+.auth-message.error  { 
+    color: #B83232; 
+    font-weight: 1000;
+    font-size: 1rem;
+
+}
+
+
+.auth-message.success { 
+    color:  #7A9B55;
+    font-weight: 1000;
+    font-size: 1rem;
+ }
+
+/* ---------- Botão voltar (fixo no canto) ---------- */
+
+.btn-home {
+    position: fixed;
+    top: 2rem;
+    left: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    color: #FAF3E8;
+    background: #B83232;
+    border: 4px solid #000;
+    border-radius: 30%;
+    cursor: pointer;
+    text-decoration: none;
+    transform: rotate(-8deg);
+}
+
+.btn-home:hover {
+    background:  #c89478;
+}

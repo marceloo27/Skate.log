@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKATE.LOG / AREA DO CLIENTE</title>
+
+    <!-- ESTILOS DA DASHBOARD -->
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+
+
+    <!-- CDNs Chart.JS e FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body onload="validarSessao()">
+    <div class="dashboard_container">
+        
+        <div class="sidebar">
+            <div class="header">
+                <img src="./img/logo.png" alt="Skate.log Logo" class="logo">
+                <h1>SKATE.LOG - PÁGINA DO CLIENTE</h1>
+            </div>
+
+            <nav class="navlist">
+                <div class="nav-section">
+                    <h4>Menu</h4>
+                    <a href="#" class="navitem active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="sessoes.html" class="navitem">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        <span>Cadastrar sessão</span>
+                    </a>
+                    <a href="quiz.html" class="navitem">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Quiz</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="footer">
+                <div class="logged-account">
+                    <i class="fa-solid fa-circle-user pfp" style="font-size: 48px; display: flex; justify-content: center; align-items: center; color: white;"></i>
+                    <div>
+                        <p id="account-username"></p>
+                        <span id="account-email"></span>
+                        <span id="account-style"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" onclick="limparSessao()">
+                    <span>Sair</span>
+                </button>
+            </div>
+        </div>
+
+        <main class="main-content">
+            
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <h4>Média treino por dia (horas)</h4>
+                    <p id="kpi_total_horas">0h</p>
+                </div>
+                <div class="kpi-card">
+                    <h4>Sessões feitas no mês</h4>
+                    <p id="kpi_sessoes">0</p>
+                </div>
+                <div class="kpi-card">
+                    <h4>Estilo predominante</h4>
+                    <p id="kpi_estilo">---</p>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box" style="flex: 2;">
+                    <h3>Tempo de Treino por Dia (ultima semana)</h3>
+                    <div style="height: 300px;">
+                        <canvas id="chartBarras"></canvas>
+                    </div>
+                </div>
+                <div class="chart-box" style="flex: 1;">
+                    <h3>Distribuição de manobras favoritas</h3>
+                    <div style="height: 300px;">
+                        <canvas id="chartPizza"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+
+
+        <script src="./scripts/utils/sessao.js"></script>
+        <!-- <script src="../scripts/utils/mock-user.js"></script> -->
+        <script src="./scripts/dashboard-charts.js"></script>
+</body>
+
+</html>

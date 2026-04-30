@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKATE.LOG | Cadastro</title>
+
+    <!-- ESTILOS GLOBAIS E DA PÁGINA -->
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/auth.css">
+   
+     <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+
+    <!-- CDN FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body> 
+
+    <!-- Botão voltar para a página inicial -->
+    <a class="btn-home" href="./login.html" title="Voltar a tela de login">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <div class="wrapper wrapper--cadastro"> 
+
+        <!-- Imagem lateral -->
+        <div class="img-box">
+            <img src="./img/img_cadastrologin.jpg" alt="Imagem de fundo">
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <div class="auth-container">
+
+            <img class="auth-logo auth-logo--cadastro" src="./img/logo.png" alt="Logo Skate.log">
+
+            <h3>CADASTRE-SE NO SKATE.LOG</h3>
+
+          
+            <!-- Usuário -->
+            <div class="input-group">
+              <i class="fa-solid fa-user"></i>
+                <!-- <i class="fa-regular fa-circle-user"></i> -->
+                <input
+                    type="text"
+                    id="ipt_usuario"
+                    class="auth-input"
+                    placeholder="Nome"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <!-- E-mail -->
+            <div class="input-group">
+                <!-- <i class="fa-regular fa-envelope"></i> -->
+                 <i class="fa-solid fa-envelope"></i>
+                <input
+                    type="email"
+                    id="ipt_email"
+                    class="auth-input"
+                    placeholder="Email"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+        <i class="fa-solid fa-skating"></i>
+        <select id="sel_estilo" class="auth-input">
+            <option value="" disabled selected>Qual seu estilo principal?</option>
+            <option value="Street">Street</option>
+            <option value="Transition">Transition (Rampa)</option>
+            <option value="Freestyle">Freestyle</option>
+        </select>
+    </div>
+
+            <!-- Senha -->
+            <div class="input-group input-group--password">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    id="ipt_senha"
+                    class="auth-input"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                    required
+                >
+              
+            </div>
+
+            <!-- Confirmar senha -->
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    id="ipt_confirmar"
+                    class="auth-input"
+                    placeholder="Confirmar senha"
+                    autocomplete="new-password"
+                    required
+                >
+                
+               
+            </div>
+
+           
+            <p id="auth_message" class="auth-message"></p>
+
+            <button class="auth-btn" onclick="cadastrar()">
+                Cadastrar
+              
+            </button>
+
+            <a class="auth-link auth-link--login" href="login.html">Já tem uma conta? Entrar</a>
+
+        </div>
+    </div>
+    
+
+<script src="./scripts/utils/sessao.js"></script>
+<script>
+
+
+  function resetarMensagem() {
+    auth_message.style.display = "none";
+    auth_message.classList.remove("error", "success");
+    auth_message.innerHTML = "";
+}
+
+  function cadastrar() {
+    
+
+    resetarMensagem();
+
+   
+    var nomeVar = ipt_usuario.value;
+    var emailVar = ipt_email.value;
+    var senhaVar = ipt_senha.value;
+    var confirmacaoSenhaVar = ipt_confirmar.value;
+    var estiloVar = sel_estilo.value;
+
+      let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+
+      // mínimo 6 caracteres | 1 maiúscula | 1 minúscula | 1 caractere especial
+      let senhaRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^\w\s]).{8,}$/;
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      estiloVar == ""
+    ) {
+      auth_message.style.display = "block";
+      auth_message.classList.add("error");
+      auth_message.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+    //   finalizarAguardar();
+      return false;
+    }
+      if(!emailRegex.test(emailVar)) {
+        auth_message.style.display = "block";
+        auth_message.classList.add("error");
+        auth_message.innerHTML = "Formato de e-mail inválido.";
+        return false;
+      }
+
+      if(!senhaRegex.test(senhaVar) || !senhaRegex.test(confirmacaoSenhaVar)) {
+        auth_message.style.display = "block";
+        auth_message.classList.add("error");
+        auth_message.innerHTML = "Senha deve obedecer ao formato: mínimo 8 caracteres | 1 maiúscula | 1 minúscula | 1 caractere especial.";
+        return false;
+      }
+
+      if(senhaVar !== confirmacaoSenhaVar) {
+        auth_message.style.display = "block";
+        auth_message.classList.add("error");
+        auth_message.innerHTML = "Senhas não coincidem!";
+        return false;
+      }
+
+      if(nomeVar.length < 3) {
+        auth_message.style.display = "block";
+        auth_message.classList.add("error");
+        auth_message.innerHTML = "Nome de usuário deve possuir mais do que 3 caracteres.";
+        return false;
+      }
+
+  else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+       
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        estiloServer: estiloVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          auth_message.style.display = "block";
+          auth_message.classList.add("success");
+          auth_message.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, 2000);
+
+          limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+
+  function sumirMensagem() {
+    auth_message.style.display = "none";
+  }
+</script>
+</body>
+</html>

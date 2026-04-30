@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKATE.LOG | Login</title>
+
+    <!-- ESTILOS GLOBAIS E DA PÁGINA -->
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/auth.css">
+   
+    
+     <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+
+    <!-- CDN FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" 
+    />
+</head>
+<body>
+
+    <!-- Botão voltar para a página inicial -->
+    <a class="btn-home" href="./index.html" title="Voltar ao início">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <div class="wrapper wrapper--login">
+
+        <!-- Imagem lateral -->
+        <div class="img-box">
+            <img src="./img/img_cadastrologin.jpg" alt="Banner de login">
+        </div>
+
+        <!-- Formulário de login -->
+        <div class="auth-container">
+
+            <img class="auth-logo auth-logo--login" src="./img/logo.png" alt="Logo AppleTech">
+
+            <h3>ENTRAR NO SKATE.LOG</h3>
+
+            <!-- E-mail -->
+            <div class="input-group">
+                 <i class="fa-solid fa-envelope"></i>
+                <input
+                    type="email"
+                    id="ipt_email"
+                    class="auth-input"
+                    placeholder="Email"
+                    autocomplete="email"
+                >
+            </div>
+
+            <div class="input-group input-group--password">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    id="ipt_senha"
+                    class="auth-input"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                >
+                   
+            </div>
+
+            <a class="auth-link auth-link--forgot" href="/">Esqueceu a senha?</a>
+
+            <p id="auth_message" class="auth-message"></p>
+
+            <button class="auth-btn" onclick="entrar()">
+                Entrar
+               
+            </button>
+
+            <a class="auth-link auth-link--register" href="./cadastro.html">Não tem conta? inscreva-se</a>
+        </div>
+    </div>
+
+<script src="./scripts/utils/sessao.js"></script>
+
+<script>
+
+
+    function entrar() {
+        // aguardar();
+
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+
+        let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+
+        let senhaRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^\w\s]).{6,}$/;
+         if (emailVar == "" || senhaVar == "") {
+            auth_message.style.display = "block";
+            auth_message.classList.add("error");
+            auth_message.innerHTML = "Preencha todos os campos antes de seguir em frente!";
+            
+            return false;
+        }
+        if(!emailRegex.test(emailVar)) {
+            auth_message.style.display = "block";
+            auth_message.classList.add("error");
+            auth_message.innerHTML = "Formato de e-mail inválido.";
+            return false;
+        }
+
+        if(!senhaRegex.test(senhaVar)) {
+            auth_message.style.display = "block";
+            auth_message.classList.add("error");
+            auth_message.innerHTML = "Senha deve obedecer ao formato: mínimo 6 caracteres | 1 maiúscula | 1 minúscula | 1 caractere especial.";
+            return false;
+        }
+
+       
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.table(json);
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ESTILO_USUARIO = json.estilo;
+                    
+
+                    setTimeout(function () {
+                        window.location = "./dashboard.html";
+                    }, 1000); 
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                    auth_message.style.display = "block";
+                    auth_message.classList.add("error");
+                    auth_message.innerHTML = texto; 
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        auth_message.style.display = "none"
+    }
+
+</script>
+</body>
+</html>
