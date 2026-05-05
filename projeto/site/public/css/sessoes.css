@@ -1,0 +1,252 @@
+
+
+.dashboard_container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    background-color: #682121; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-right: 1px solid #333;
+}
+
+.sidebar .header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .logo {
+    width: 11rem;
+    margin-bottom: 10px;
+}
+
+.sidebar h1 {
+    font-size: 1.4rem;
+    color: #FFD700;
+    letter-spacing: 1px;
+}
+
+/* LINKS DE NAVEGAÇÃO */
+.navlist {
+    flex-grow: 1;
+}
+
+.nav-section h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ffffff99;
+    margin-bottom: 15px;
+}
+
+.navitem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #BBB;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.navitem:hover, .navitem.active {
+    background-color: #1a1a1a;
+    color: #FFD700;
+
+}
+
+.navitem:hover{
+    transform: scale(1.1);
+}
+
+.navitem i {
+    font-size: 18px;
+}
+
+/* FOOTER DA SIDEBAR */
+.footer {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.logged-account {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#account-username {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#account-style {
+    font-size: 15px;
+    color: white;
+}
+#account-email {
+    font-size: 12px;
+    color: white;
+}
+#logout-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#logout-btn:hover {
+    background-color: #ff4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+
+.main-content-form {
+    flex-grow: 1;
+    padding: 40px;
+    background-image: url("../img/cadastrologin_banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+
+.form-container {
+    background: rgb(42, 36, 36);
+    padding: 2rem;
+    border-radius: 10%;
+    /* max-width: 550px; */
+    
+    width: 40rem;
+    /* box-shadow: 0 8px 25px rgba(0,0,0,0.5); */
+    border: 4px solid #682121;
+}
+
+.titulo-sessao {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.titulo-sessao h2 {
+     font-size: 22px; color: white; 
+    }
+.titulo-sessao span {
+     color: #ba2828; 
+    }
+.titulo-sessao p {
+     color: #aaa; font-size: 14px; margin-top: 5px; 
+    }
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #DDD;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    padding: 12px;
+    color: white;
+    border-radius: 6px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #ba2828;
+}
+
+
+.manobras-lista-performance {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(18, 18, 18, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.manobra-item-registro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #252525;
+    border-radius: 6px;
+    border: 3px solid #682121;
+}
+
+.manobra-nome {
+    font-size: 14px;
+    color: #eee;
+}
+
+.input-qtd {
+    width: 60px;
+    background-color: #121212 !important;
+    border: 1px solid #ba2828 !important;
+    color: white !important;
+    padding: 5px !important;
+    text-align: center;
+    border-radius: 4px;
+}
+
+
+.manobras-lista-performance::-webkit-scrollbar {
+    width: 6px;
+}
+.manobras-lista-performance::-webkit-scrollbar-thumb {
+    background: #682121;
+    border-radius: 10px;
+}
+
+
+.btn-cadastrar {
+    width: 100%;
+    background-color: #682121;
+    color: black;
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-cadastrar:hover {
+    background-color: #ba2828;
+    transform: scale(1.05);
+}

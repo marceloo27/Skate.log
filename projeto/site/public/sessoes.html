@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKATE.LOG / CADASTRAR SESSÃO</title>
+
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/sessoes.css">
+    
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+
+
+<body onload="validarSessao()">
+    <div class="dashboard_container">
+        
+        <div class="sidebar">
+            <div class="header">
+                <img src="./img/logo.png" alt="Skate.log Logo" class="logo">
+                <h1>SKATE.LOG - CADASTRO</h1>
+            </div>
+
+            <nav class="navlist">
+                <div class="nav-section">
+                    <h4>Menu</h4>
+                    <a href="dashboard.html" class="navitem">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="sessoes.html" class="navitem active">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        <span>Cadastrar sessão</span>
+                    </a>
+                    <a href="quiz.html" class="navitem">
+                       <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Quiz</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="footer">
+                <div class="logged-account">
+                    <i class="fa-solid fa-circle-user pfp" style="font-size: 48px; color: white;"></i>
+                    <div>
+                        <p id="account-username"></p>
+                         <span id="account-email"></span>
+                        <span id="account-style"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" onclick="limparSessao()">
+                    <span>Sair</span>
+                </button>
+            </div>
+        </div>
+
+        <main class="main-content-form">
+            
+            <div class="form-container">
+                <div class="titulo-sessao">
+                    <h2>REGISTRAR <span>TREINO</span></h2>
+                    <p>Como foi sua sessão hoje?</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="input_tempo">Tempo de Treino (minutos)</label>
+                    <input type="number" id="input_tempo" placeholder="Ex: 60">
+                </div>
+
+                <div class="form-group">
+                    <label for="select_dia">Dia da Semana</label>
+                    <select id="select_dia">
+                        <option value="Segunda">Segunda-feira</option>
+                        <option value="Terça">Terça-feira</option>
+                        <option value="Quarta">Quarta-feira</option>
+                        <option value="Quinta">Quinta-feira</option>
+                        <option value="Sexta">Sexta-feira</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Desempenho por Manobra</label>
+                    <div class="manobras-lista-performance">
+                        
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Ollie</span>
+                            <input type="checkbox" id="input_ollie" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Kickflip</span>
+                            <input type="checkbox" id="input_flip" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Heelflip</span>
+                            <input type="checkbox" id="input_heel" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Drop-in</span>
+                            <input type="checkbox" id="input_drop" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Rock to Fakie</span>
+                            <input type="checkbox" id="input_rock" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                        <div class="manobra-item-registro">
+                            <span class="manobra-nome">Boardslide</span>
+                            <input type="checkbox" id="input_slide" class="input-qtd" placeholder="0" min="0">
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="btn-cadastrar" onclick="cadastrarSessao()">Salvar Sessão</button>
+            </div>
+
+        </main>
+    </div>
+    <script src="./scripts/utils/sessao.js"></script>
+</body>
+<script>
+    function cadastrarSessao(){
+        let tempoVar = input_tempo.value;
+        let diaVar = select_dia.value;
+        let idUsuarioVar = sessionStorage.ID_USUARIO;
+
+        console.log("ID do Usuário:", idUsuarioVar);
+
+        if (tempoVar == "" || tempoVar <= 0) {
+            alert("Por favor, insira um tempo de treino válido!");
+            return;
+        }
+
+
+        fetch("/aquarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+       
+        // Agora vá para o arquivo routes/usuario.js
+        tempoServer: tempoVar,
+        diaServer: diaVar,
+        idUsuarioServer: idUsuarioVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+        //   auth_message.style.display = "block";
+        //   auth_message.classList.add("success");
+        //   auth_message.innerHTML =
+            // "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+             let qtdollie = Number(input_ollie.value); 
+        if (qtdollie > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 1 
+                }),
+            });
+        }
+
+        
+        let qtdflip = Number(input_flip.value); 
+        if (qtdflip > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 2 
+                }),
+            });
+        }
+
+        
+        let qtdheel = Number(input_heel.value);
+        if (qtdheel > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 3
+                }),
+            });
+        }
+
+         let qtddrop = Number(input_drop.value);
+        if (qtddrop > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 4
+                }),
+            });
+        }
+
+
+         let qtdrock = Number(input_rock.value);
+        if (qtdrock > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 5
+                }),
+            });
+        }
+
+
+         let qtdslide = Number(input_slide.value);
+        if (qtdslide > 0) {
+            fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuarioVar,
+                    idManobraServer: 6
+                }),
+            });
+        }
+
+       
+
+        
+        
+            alert("sessao cadastrada")
+            input_tempo.value = ""
+            
+
+        //   setTimeout(() => {
+        //     window.location = "login.html";
+        //   }, 2000);
+
+        //   limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+
+
+   
+
+
+    }
+</script>
+</html>
