@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `Skate.log`;
 CREATE DATABASE `Skate.log`;
 USE `Skate.log`;
 
--- 1. Tabela de Usuário 
+
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50),
@@ -11,14 +11,14 @@ CREATE TABLE usuario (
     estilo VARCHAR(50) default 'street'
 );
 
--- 2. Tabela de Manobras (Catálogo fixo para o skatista escolher)
+
 CREATE TABLE manobra (
     idManobra INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    categoria VARCHAR(45) -- 'Street' ou 'Transition'
+    categoria VARCHAR(45) 
 );
 
--- 3. Tabela de Sessão 
+
 CREATE TABLE sessao (
     idSessao INT PRIMARY KEY AUTO_INCREMENT,
     fkUsuario INT,
@@ -29,29 +29,24 @@ CREATE TABLE sessao (
         REFERENCES usuario(idUsuario) ON DELETE CASCADE
 );
 
--- 4. Tabela de Registro (Quais manobras foram feitas em qual treino)
+
 CREATE TABLE registro_manobra (
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     fkSessao INT,
     fkManobra INT,
+    quantidadeManobra INT,
     CONSTRAINT fk_reg_sessao FOREIGN KEY (fkSessao) 
         REFERENCES sessao(idSessao) ON DELETE CASCADE,
     CONSTRAINT fk_reg_manobra FOREIGN KEY (fkManobra) 
         REFERENCES manobra(idManobra)
 );
 
--- INSERTs Básicos para ter o que mostrar no site
+
 INSERT INTO manobra (nome, categoria) VALUES 
 ('Ollie', 'Street'), ('Kickflip', 'Street'), ('Heelflip', 'Street'),
 ('Drop-in', 'Transition'), ('Rock to Fakie', 'Transition'), ('Manual', 'Street');
 
 select * from usuario;
-
-select * from sessao;
-
-select * from registro_manobra;
-
-select fkManobra, count(*) from registro_manobra r join manobra m on r.fkManobra = m.idManobra group by fkManobra;
 
 
 
