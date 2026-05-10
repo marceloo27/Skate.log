@@ -1,14 +1,10 @@
 <p align="center">
-  <img src="projeto/site/public/img/logo.png" alt="Logo do Projeto" width="200">
+  <img src="projeto/site/public/img/logo.png" alt="Logo do Projeto" width="300">
 </p>
 
 <p align="center">
   <h1>Projeto Individual | 1º Semestre</h1><br>
   Ciências da Computação – SPTech (São Paulo Tech School)
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge" alt="Status">
 </p>
 
 ### 📝 Descrição
