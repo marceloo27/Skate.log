@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKATE.LOG / AREA DO CLIENTE</title>
 
-    <!-- ESTILOS DA DASHBOARD -->
+
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
 
 
-    <!-- CDNs Chart.JS e FontAwesome -->
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -67,7 +67,7 @@
                     <p id="kpi_total_horas">0h</p>
                 </div>
                 <div class="kpi-card">
-                    <h4>Sessões feitas</h4>
+                    <h4>Total sessões feitas</h4>
                     <p id="kpi_sessoes">0</p>
                 </div>
                 <div class="kpi-card">
@@ -78,7 +78,7 @@
 
             <div class="charts-container">
                 <div class="chart-box" style="flex: 2;">
-                    <h3>Tempo de Treino por Dia (ultima semana)</h3>
+                    <h3>Tempo de treino por dia (ultima semana)</h3>
                     <div style="height: 300px;">
                         <canvas id="chartBarras"></canvas>
                     </div>
@@ -347,13 +347,7 @@ document.getElementById("account-style").innerHTML = sessionStorage.ESTILO_USUAR
 //  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 
-window.onload = function() {
-    if (idUsuario) {
-        exibirGraficosDinamicos();
-    } else {
-        window.location = "login.html"; 
-    }
-};
+window.onload = exibirGraficosDinamicos();
 
 function exibirGraficosDinamicos() {
     obterDadosTreino(idUsuario);
@@ -463,13 +457,13 @@ function plotarGraficoPizza(resposta) {
 
 function atualizarKPIs(dados) {
    
-    let listaSessoes = dados || [];
+    let listaSessoes = dados;
     
     let totalMinutos = 0;
 
-    for (let i = 0; i < listaSessoes.length; i++) {
-        let sessaoAtual = listaSessoes[i];      
-        totalMinutos += Number(sessaoAtual.tempoMinutos) || 0;  
+    for (let i = 0; i < listaSessoes.length; i++) { 
+        // percorre os selects e soma o tempo minutos    
+        totalMinutos += Number(listaSessoes[i].tempoMinutos);  
     document.getElementById("kpi_total_horas").innerHTML = totalMinutos + " min";
     document.getElementById("kpi_sessoes").innerHTML = listaSessoes.length;    
     document.getElementById("kpi_msessao").innerHTML = `${(totalMinutos / listaSessoes.length).toFixed(1)} min`;
