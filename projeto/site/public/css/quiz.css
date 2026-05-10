@@ -196,6 +196,13 @@
     transform: scale(1.1);
 }
 
+.opt-btn:focus {
+    background-color: #ba2828;
+    color: black;
+    transform: scale(1.1);
+    border: #FFD700 1px solid;
+}
+
 .section-opcoes{
     display: flex;
     justify-content: space-between;
