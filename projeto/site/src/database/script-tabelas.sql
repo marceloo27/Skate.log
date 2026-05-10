@@ -34,6 +34,7 @@ CREATE TABLE registro_manobra (
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     fkSessao INT,
     fkManobra INT,
+    quantidadeManobra INT,
     CONSTRAINT fk_reg_sessao FOREIGN KEY (fkSessao) 
         REFERENCES sessao(idSessao) ON DELETE CASCADE,
     CONSTRAINT fk_reg_manobra FOREIGN KEY (fkManobra) 

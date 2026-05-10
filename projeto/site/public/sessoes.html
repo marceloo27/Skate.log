@@ -89,32 +89,32 @@
                         
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Ollie</span>
-                            <input type="checkbox" id="input_ollie" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_ollie" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Kickflip</span>
-                            <input type="checkbox" id="input_flip" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_flip" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Heelflip</span>
-                            <input type="checkbox" id="input_heel" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_heel" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Drop-in</span>
-                            <input type="checkbox" id="input_drop" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_drop" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Rock to Fakie</span>
-                            <input type="checkbox" id="input_rock" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_rock" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                         <div class="manobra-item-registro">
                             <span class="manobra-nome">Boardslide</span>
-                            <input type="checkbox" id="input_slide" class="input-qtd" placeholder="0" min="0">
+                            <input type="text" id="input_slide" class="input-qtd" placeholder="0" min="0">
                         </div>
 
                     </div>
@@ -148,7 +148,7 @@
       },
       body: JSON.stringify({
        
-        // Agora vá para o arquivo routes/usuario.js
+        
         tempoServer: tempoVar,
         diaServer: diaVar,
         idUsuarioServer: idUsuarioVar
@@ -169,6 +169,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtdollie,
                     idManobraServer: 1 
                 }),
             });
@@ -182,6 +183,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtdflip,
                     idManobraServer: 2 
                 }),
             });
@@ -195,6 +197,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtdheel,
                     idManobraServer: 3
                 }),
             });
@@ -207,6 +210,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtddrop,
                     idManobraServer: 4
                 }),
             });
@@ -220,6 +224,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtdrock,
                     idManobraServer: 5
                 }),
             });
@@ -233,6 +238,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     idUsuarioServer: idUsuarioVar,
+                    quantidadeServer: qtdslide,
                     idManobraServer: 6
                 }),
             });
