@@ -5,6 +5,14 @@
     width: 100vw;
 }
 
+.logo{
+    transition: transform 0.4s ease; 
+}
+
+.logo:hover{
+     transform: rotate(-8deg) scale(1.05);
+}
+
 .sidebar {
     width: 280px;
     min-width: 280px;
