@@ -94,27 +94,10 @@ body {
     font-size: 1rem;
 }
  
-/* .input_autenticar:hover {
-    border-color: rgba(234, 154, 154, 0.8);
-    background-color: rgb(249, 218, 218);
-} */
- 
-/* .auth-input:focus {
-    border-color: #B83232;
-    background-color: #ffffff;
-} */
- 
-/* .auth-input::placeholder {
-    color:  #242020;
-} */
 
 .input_autenticar:hover {
     border-color: #A90505;
 }
-
-/* .auth-input:focus {
-    border-color: #ceca48;
-} */
 
 
 .link_autenticar {
@@ -125,14 +108,6 @@ body {
     transition: text-decoration 0.2s;
 }
 
-/* .link_autenticar:hover {
-    text-decoration: underline;
-} */
-
-/* .auth-link--forgot {
-    align-self: flex-start;
-    margin-bottom: 0.625rem;
-} */
 
 .btn_autenticar {
     margin-top: 1.1rem;
