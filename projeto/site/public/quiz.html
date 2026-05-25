@@ -81,33 +81,7 @@
 
     <script src="./scripts/utils/sessao.js"></script>
     <script>
-    // let perguntas = [
-    //     "Qual o nome da prancha?", 
-    //     "Quem é a 'Fadinha' do skate?", 
-    //     "Qual a manobra mais básica?",
-    //     "Quantas rodas tem um skate tradicional?",
-    //     "Onde nasceu o skate?",
-    //     "O que prende as rodas em um skate?",
-    //     "O que dá aderência ao skate?",
-    //     "Como é chamado o skate longo?",
-    //     "Qual a manobra que desliza no ferro?",
-    //     "Nos ultimos tempos ele virou um esporte?"
-    // ];
-
-    // let opcoes = [
-    //     ["shape", "deck", "tábua", "madeira"], 
-    //     ["letícia", "rayssa leal", "pâmela", "Nathalia"], 
-    //     ["Kickflip", "Heelflip", "hardflip", "Ollie"],
-    //     ["2", "4", "8", "1"],
-    //     ["são paulo", "califórnia" , "paris", "oregon"],
-    //     ["truck", "rolamento", "lixa", "parafuso"],
-    //     ["cera", "lixa", "verniz", "vela"],
-    //     ["streetskate", "cruiser", "fingerboard", "longboard"],
-    //     ["manual", "grind", "flip", "heelflip"],
-    //     ["proibido", "olímpico", "de Inverno", "aquático"]
-    // ];
-
-    // let corretas = [0, 1, 3, 1, 1, 0, 1, 3, 1, 1];
+   
 
     let dados = [
     {
@@ -172,9 +146,7 @@
         pergunta.innerHTML = `${indice + 1} . - ${dados[indice].pergunta}`
         div_opcoes.innerHTML = "";
 
-        // let lista_opcoes = opcoes[indice];
-
-        // for (let i = 0; i < lista_opcoes.length; i++) {
+       
             for(let i = 0; i < dados[indice].opcoes.length; i++){
             div_opcoes.innerHTML += `
                 <button onclick="verificar(${i})" class="opt-btn">
@@ -182,7 +154,7 @@
                 </button>`;
         }
         
-        // btn_proxima.style.display = "none";
+      
     }
 
     function verificar(escolha) {
@@ -193,19 +165,19 @@
 
         respondido = true; 
 
-        // if (escolha == corretas[indice]) {
+        
         if(escolha == dados[indice].correta){
             pontos++;
         }
         
-        // btn_proxima.style.display = "block";
+      
 
         
     }
 
     function proximaPergunta() {
         indice++;
-        // if (indice < perguntas.length) {
+      
             if(indice < dados.length){
             carregarPergunta();
         } else {
