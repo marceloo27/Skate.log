@@ -158,10 +158,7 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-        //   auth_message.style.display = "block";
-        //   auth_message.classList.add("success");
-        //   auth_message.innerHTML =
-            // "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+       
              let qtdollie = Number(input_ollie.value); 
         if (qtdollie > 0) {
             fetch("/empresas/cadastrar", {
@@ -252,11 +249,7 @@
             input_tempo.value = ""
             
 
-        //   setTimeout(() => {
-        //     window.location = "login.html";
-        //   }, 2000);
-
-        //   limparFormulario();
+       
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
