@@ -44,7 +44,7 @@ CREATE TABLE registro_manobra (
 
 INSERT INTO manobra (nome, categoria) VALUES 
 ('Ollie', 'Street'), ('Kickflip', 'Street'), ('Heelflip', 'Street'),
-('Drop-in', 'Transition'), ('Rock to Fakie', 'Transition'), ('Manual', 'Street');
+('Drop-in', 'Transition'), ('Rock to Fakie', 'Transition'), ('Boardslide', 'Street');
 
 select * from usuario;
 

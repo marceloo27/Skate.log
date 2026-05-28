@@ -117,6 +117,8 @@
                             <input type="text" id="input_slide" class="input-qtd" placeholder="0" min="0">
                         </div>
 
+                        
+
                     </div>
                 </div>
 
@@ -128,19 +130,25 @@
     <script src="./scripts/utils/sessao.js"></script>
 </body>
 <script>
+
+    // função para cadastrar sessão 
     function cadastrarSessao(){
+
+        // declarações de variaveis 
         let tempoVar = input_tempo.value;
         let diaVar = select_dia.value;
         let idUsuarioVar = sessionStorage.ID_USUARIO;
 
         console.log("ID do Usuário:", idUsuarioVar);
 
+        // validações
         if (tempoVar == "" || tempoVar <= 0) {
             alert("Por favor, insira um tempo de treino válido!");
             return;
         }
 
 
+        // fetch pra cadastrar na tabela sessão
         fetch("/aquarios/cadastrar", {
       method: "POST",
       headers: {
@@ -159,7 +167,13 @@
 
         if (resposta.ok) {
        
-             let qtdollie = Number(input_ollie.value); 
+       
+    // area para cadastro de cada manobra, insere na tabela registro_manobra
+        // o id da manobra faz referencia ao id da tabela com dados fixos (manobra)
+
+
+        // manobra ollie
+        let qtdollie = Number(input_ollie.value); 
         if (qtdollie > 0) {
             fetch("/empresas/cadastrar", {
                 method: "POST",
@@ -172,7 +186,7 @@
             });
         }
 
-        
+        // manobra flip 
         let qtdflip = Number(input_flip.value); 
         if (qtdflip > 0) {
             fetch("/empresas/cadastrar", {
@@ -186,7 +200,7 @@
             });
         }
 
-        
+        // manobra heel flip
         let qtdheel = Number(input_heel.value);
         if (qtdheel > 0) {
             fetch("/empresas/cadastrar", {
@@ -199,7 +213,7 @@
                 }),
             });
         }
-
+        // manobra drop in 
          let qtddrop = Number(input_drop.value);
         if (qtddrop > 0) {
             fetch("/empresas/cadastrar", {
@@ -213,7 +227,7 @@
             });
         }
 
-
+        // manobra rock to fakie 
          let qtdrock = Number(input_rock.value);
         if (qtdrock > 0) {
             fetch("/empresas/cadastrar", {
@@ -227,7 +241,7 @@
             });
         }
 
-
+        // manobra slide 
          let qtdslide = Number(input_slide.value);
         if (qtdslide > 0) {
             fetch("/empresas/cadastrar", {
